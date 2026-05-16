@@ -1,4 +1,4 @@
-# Sentinel-Orchestrator 🛡️
+# Sentinel-Policy 🛡️
 ### *An Enterprise-Grade, 5-Layer Behavioral Guardrail & Testing Runtime for the Model Context Protocol (MCP)*
 
 Sentinel-Orchestrator is an out-of-band, zero-dependency safety proxy engineered to sit directly between autonomous AI agents (such as Claude's Computer Use or Gemini CLI tools) and host operating system kernels. Fully optimized for legacy x86_64 architectures running Ubuntu 24.04 LTS.
