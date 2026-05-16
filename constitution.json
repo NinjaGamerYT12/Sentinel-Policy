@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "Sentinel-Policy Constitution",
+    "description": "Hardened security policy for MCP execution environments"
+  },
+  "settings": {
+    "max_evaluation_time_ms": 100,
+    "fail_safe_default": "deny"
+  },
+  "rules": {
+    "allowed_commands": [
+      "^ls( .*)?$",
+      "^pwd$",
+      "^whoami$",
+      "^date$",
+      "^git status$",
+      "^git log( .*)?$",
+      "^cat [^\\./]+$",
+      "^python3 -m unittest( .*)?$",
+      "^grep( .*)?$"
+    ],
+    "denied_commands": [
+      "rm -rf",
+      "dd if=",
+      "mkfs",
+      "shutdown",
+      "reboot",
+      "passwd",
+      "su -",
+      "sudo",
+      "curl",
+      "wget",
+      "nc ",
+      "netcat",
+      "ssh ",
+      "scp ",
+      "ftp ",
+      "telnet",
+      "nmap"
+    ],
+    "restricted_paths": [
+      "/etc",
+      "/root",
+      "/var",
+      "/usr/local/bin",
+      "/usr/bin",
+      "/bin",
+      "/sbin",
+      "/home/ninjagamer/Sentinel-Policy",
+      "/usr/lib/python3.12"
+    ],
+    "allowed_paths": [
+      "/home/ninjagamer/Sentinel-Policy/workspace",
+      "/tmp"
+    ]
+  },
+  "redaction": {
+    "pii_patterns": [
+      {"name": "AWS_KEY", "regex": "AKIA[0-9A-Z]{16}"},
+      {"name": "AWS_SECRET", "regex": "(?i)aws_secret_access_key[:=]\\s*[a-zA-Z0-9/+=]{40}"},
+      {"name": "SSH_PRIVATE_KEY", "regex": "-----BEGIN [A-Z ]+ PRIVATE KEY-----"},
+      {"name": "GENERIC_API_KEY", "regex": "(?i)(api[_-]?key|secret|password|token)[:=]\\s*['\"]?[a-zA-Z0-9]{32,}['\"]?"},
+      {"name": "CREDIT_CARD", "regex": "\\b(?:\\d[ -]*?){13,16}\\b"},
+      {"name": "EMAIL", "regex": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"}
+    ]
+  }
+}
